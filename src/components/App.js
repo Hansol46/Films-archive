@@ -1,76 +1,44 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import '../styles/App.css'
-import PrimarySearchAppBar from './material/nav'
 import Movie from './Movie'
 import Search from './Search'
+import { initialState, reducer } from "../store/reducer/reducer";
+import axios from 'axios'
 
-const APIkey = 'apikey=1151f2b7'
-const APIurl = `http://www.omdbapi.com/?t=inception&${APIkey}`
+// const APIkey = 'apikey=1151f2b7'
+const APIurl = `http://www.omdbapi.com/?s=inception&apikey=1151f2b7`
 
-const initialState ={
-    loading: true,
-    movies: [],
-    error: null,
-}
-const reducer = (state, action) => {
-    switch (action.type) {
-        case 'SEARCH_MOVIES_REQUEST':
-            return {
-                ...state,
-                loading: true,
-                error: null
-            }
-        case 'SEARCH_MOVIES_SUCCESS':
-            return {
-                ...state,
-                loading: true,
-                movies: action.payload
-            }
-        case 'SEARCH_MOVIES_FAILURE':
-            return {
-                ...state,
-                loading: false,
-                error: action.error
-            };
-        default: 
-            return state
-    }
-}
 function App () {
     
     const [state, dispatch] = useReducer(reducer, initialState)
-
-    useEffect( () => {
-        fetch(APIurl)
-        .then(response => response.json())
-        .then(jsonResponse => {
-            dispatch( {
+    
+    useEffect( ()=> {
+        axios.get(APIurl).then(jsonResponse => {
+            dispatch({
                 type: 'SEARCH_MOVIES_SUCCESS',
-                payload: jsonResponse.Search 
+                payload: jsonResponse.data.Search
             })
         })
-    }, [])
-
+    },[])
     const search = searchValue => {
         dispatch({
             type: 'SEARCH_MOVIES_REQUEST'
         })
-    
-    fetch(`http://www.omdbapi.com/?s=${searchValue}&${APIkey}`)
-    .then(response => response.json())
-    .then(jsonResponse=> {
-        if(jsonResponse.Response === 'True'){
+    axios(`http://www.omdbapi.com/?s=${searchValue}&apikey=1151f2b7`)
+    .then( jsonResponse => {
+        if(jsonResponse.data.Response === 'True'){
             dispatch({
-                type: "SEARCH_MOVIES_SUCCESS",
-                payload: jsonResponse.Search
+                type: 'SEARCH_MOVIES_SUCCESS',
+                payload: jsonResponse.data.Search
             })
         } else {
             dispatch({
-                type: "SEARCH_MOVIES_FAILURE",
-                error: jsonResponse.Error
+                type: 'SEARCH_MOVIES_FAILURE',
+                error: jsonResponse.data.Error
             })
         }
     })
+    
     }
     const { movies, error, loading } = state
 
@@ -79,15 +47,17 @@ function App () {
             <h1>MOVIE SEARCH</h1>
             <Search search={search}/>
             <div className="movies">
-                {loading && !error ? (
+                {
+                loading && !error ? (
                     <span>Loading...</span>
-                ) : error?(
+                ) : error ? (
                     <div className="errorMessage">{error}</div>
                 ) : (
                     movies.map((movie, index) => (
-                        <Movie key={`${index}-${movie.Title}`} movie={movie} />
+                        <Movie key={index} movie={movie} />
                     ))
-                )}
+                )
+                }
             </div>
 
         </div>
