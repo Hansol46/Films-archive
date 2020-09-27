@@ -4,8 +4,25 @@ import Movie from './Movie'
 import Search from './Search'
 import { initialState, reducer } from "../store/reducer/reducer";
 import axios from 'axios'
-import { BrowserRouter, Route } from 'react-router-dom';
-import InfoFilm from './InfoFiml';
+import { BrowserRouter, NavLink, Route } from 'react-router-dom';
+import { AppBar, Box, Button, Container, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1
+    },
+    menuButton: {
+        marginRight: theme.spacing(1)
+    },
+    title: {
+        flexGrow: 1
+    },
+    link: {
+        color: 'white',
+        textDecoration: 'none'
+    }
+}))
 
 const APIurl = `http://www.omdbapi.com/?s=inception&apikey=1151f2b7`
 
@@ -13,7 +30,7 @@ const APIurl = `http://www.omdbapi.com/?s=inception&apikey=1151f2b7`
 function App() {
 
     const [state, dispatch] = useReducer(reducer, initialState)
-
+    const classes = useStyles()
     useEffect(() => {
         axios.get(APIurl).then(jsonResponse => {
             dispatch({
@@ -46,11 +63,18 @@ function App() {
     const { movies, error, loading } = state
     return (
         <BrowserRouter>
+            <AppBar>
+                <Container fixed>
+                    <Toolbar>
+                        <Typography variant='h4' className={classes.title}> Search films</Typography>
+                        <Box mr={3}>
+                            <Button color='inherit' variant='outlined'> <NavLink to={'/'} className={classes.link}> Back home </NavLink> </Button>
+                        </Box>
+                    </Toolbar>
+                </Container>
+            </AppBar>
             <div className={'App'}>
-                <h1>MOVIE SEARCH</h1>
-                {/* <PrimarySearchAppBar /> */}
                 <Search search={search} />
-
                 <div className="movies">
                     {
                         loading && !error ? (
@@ -58,15 +82,12 @@ function App() {
                         ) : error ? (
                             <div className="errorMessage">{error}</div>
                         ) : (
-                                    movies.map((movie, index) => (
-                                        <Movie key={index} movie={movie} />
-
-                                    ))
-                                )
+                            movies.map((movie, index) => (
+                                <Movie key={index} movie={movie} />
+                            ))
+                        )
                     }
                 </div>
-
-
             </div>
         </BrowserRouter>
     )
