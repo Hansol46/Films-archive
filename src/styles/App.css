@@ -35,9 +35,26 @@ h1 {
   .movies {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    /* flex-direction: row; */
+    justify-content: center;
+    /* border: 3px solid blue; */
+    width: 100%;
   }
-  
+  .movies .cardMovie {
+    /* border: 3px solid red; */
+    width: 300px;
+  }
+  .movies .cardMovie img {
+    width: 100%;
+  }
+  .movies .cardMovie h2 {
+    font-size: 20px;
+  }
+
+
+
+
+
   .App-header h2 {
     margin: 0;
   }
@@ -63,6 +80,9 @@ h1 {
     color: rgb(161, 15, 15);
   }
   
+  .movieInfo {
+    border: 2px solid red
+  }
   
   .search {
     display: flex;
@@ -70,6 +90,10 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 10px;
+  }
+  .search .inputText {
+    margin-left: 10px;
+    margin-right: 5px;
   }
   
   

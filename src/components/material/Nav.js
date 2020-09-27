@@ -15,7 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme, props) => ({
   grow: {
     flexGrow: 1,
   },
@@ -160,7 +160,16 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
+  const [searchValue, setSearchValue] = useState('')
 
+  const resetInputField = () => {
+      setSearchValue('')
+  }
+  const callSearchFunction = (event) => {
+      event.preventDefault()
+      props.search(searchValue)
+      resetInputField()
+  }
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -178,8 +187,12 @@ export default function PrimarySearchAppBar() {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              // value={searchValue}
+              // onChange={event => setSearchValue(event.target.value)}
+              // type='text'
+              // inputProps={{ 'aria-label': 'search' }}
             />
+            {/* <input onClick={callSearchFunction} type='submit' value='SEARCH' /> */}
           </div>
         </Toolbar>
       </AppBar>
