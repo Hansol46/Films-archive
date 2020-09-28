@@ -4,19 +4,6 @@ h1 {
     font-size: 42px;
 }
 
-/* .App-header {
-    background-color: #282c34;
-    height: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-    padding: 20px;
-    cursor: pointer;
-  }
-   */
   .App {
     margin-top: 100px;
   }
@@ -40,11 +27,9 @@ h1 {
     flex-wrap: wrap;
     /* flex-direction: row; */
     justify-content: center;
-    /* border: 3px solid blue; */
     width: 100%;
   }
   .movies .cardMovie {
-    /* border: 3px solid red; */
     width: 300px;
   }
   .movies .cardMovie img {

@@ -1,13 +1,15 @@
-import { makeStyles, TextField, Autocomplete} from '@material-ui/core'
+import { makeStyles, TextField } from '@material-ui/core'
 import React, { useState } from 'react'
-// import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+// import { Autocomplete } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
             margin: theme.spacing(1),
             width: '40ch',
-            marginLeft: '70ch'
+            marginLeft: '70ch',
+            display: 'flex',
         },
     },
 }));
@@ -29,31 +31,26 @@ function Search(props) {
     const classes = useStyles();
     return (
         <form className={classes.root} autoComplete='on'>
-            {/* <Autocomplete
-                id="combo-box-demo"
-                options={top100Films}
-                getOptionLabel={(option) => option.title}
-                style={{ width: 300 }}
-                renderInput={(params) => <TextField
-                    value={searchValue}
-                    onChange={event => setSearchValue(event.target.value)}
-                    className='inputText'
-                    type='text'
-                    id="tags1"
-                    {...params}
-                    label="Combo box"
-                    variant="outlined"
-                />}
+            <div>
+                <Autocomplete
+                    id="combo-box-demo"
+                    options={top100Films}
+                    getOptionLabel={(option) => option.title}
+                    style={{ width: 300, paddingRight: '10px' }}
+                    renderInput={(params) => <TextField
+                        value={searchValue}
+                        onChange={event => setSearchValue(event.target.value)}
+                        className='inputText'
+                        type='text'
+                        id="tags1"
+                        {...params}
+                        label="Enter name film"
+                    // variant="outlined"
+                    />}
 
-            /> */}
-            <TextField
-                value={searchValue}
-                onChange={event => setSearchValue(event.target.value)}
-                type='text'
-                className='inputText'
-                id="tags1"
-            />
-            <input onClick={callSearchFunction} type='submit' value='SEARCH' />
+                />
+                <input onClick={callSearchFunction} type='submit' value='SEARCH' />
+            </div>
         </form>
     )
 }

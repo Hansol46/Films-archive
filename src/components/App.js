@@ -82,10 +82,10 @@ function App() {
                         ) : error ? (
                             <div className="errorMessage">{error}</div>
                         ) : (
-                            movies.map((movie, index) => (
-                                <Movie key={index} movie={movie} />
-                            ))
-                        )
+                                    movies.map((movie, index) => (
+                                        <Movie key={index} movie={movie} />
+                                    ))
+                                )
                     }
                 </div>
             </div>
