@@ -3,6 +3,7 @@ create app for search films
 
 
 SETUP: 
-1. use "npm install" 
-2. after install project, use "npm start"
-3. now search films 
+1. apply command "git clon <link>" or download zip, so what get project 
+2. use "npm install" 
+3. after install necessary modules, use "npm start"
+4. now search films 
