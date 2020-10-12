@@ -4,6 +4,7 @@ Application creating for search films. Work with API - <https://www.omdbapi.com>
 #### Using tools:
 * Webpack 
 * React
+* UI - material-ui
 * Axios - for working with API 
 * firebase - for deploy 
 ## SETUP: 
