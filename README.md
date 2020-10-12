@@ -1,7 +1,7 @@
 # React app for search films
 ## Description:
-Application creating for search films. Work with API - <https://www.omdbapi.com>
-Using tools:
+Application creating for search films. Work with API - <https://www.omdbapi.com>.
+#### Using tools:
 * Webpack 
 * React
 * Axios - for working with API 
