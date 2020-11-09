@@ -13,5 +13,6 @@ Application creating for search films. Work with API - <https://www.omdbapi.com>
 3. use `"npm start"`
 4. now search films 
 ***
-### [Link on app](https://react-search-film.web.app/)
+### Link on app: <br />
+<https://react-search-film.web.app/>
 
