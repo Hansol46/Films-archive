@@ -14,5 +14,4 @@ Application creating for search films. Work with API - <https://www.omdbapi.com>
 4. now search films 
 ***
 ### [Link on app](https://react-search-film.web.app/)
-<img src='https://cdn1.savepice.ru/uploads/2020/10/12/453acdd2993a74a1bc25f05690ecaec8-full.png'>
-// ![screenshot of sample](https://cdn1.savepice.ru/uploads/2020/10/12/453acdd2993a74a1bc25f05690ecaec8-full.png)
+
